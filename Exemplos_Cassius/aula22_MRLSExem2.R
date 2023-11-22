@@ -37,7 +37,7 @@ resposta <- ggplot(dt, aes(x = experiencia))+
                  bins = 7, fill="blue")+
   scale_y_continuous(labels = scales::percent)+
   labs(y="FR",
-       x="experiencia (em R$1000,00)",
+       x="salário (em R$1000,00)",
        title="Histograma")+
   theme(text = element_text(size = 12))
 ggplotly(resposta)

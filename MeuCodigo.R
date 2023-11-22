@@ -1,50 +1,44 @@
 # Modelo de regressao linear simples
 
-rm(list=ls(all=TRUE))
-
 if(!require(pacman)) install.packages("pacman")
 library(pacman)
 
 pacman::p_load(tidyverse, plotly, lmtest, ggfortify, broom, ggExtra, car)
 
-
-# Dados
-dt <- read.csv("~/EstR/est057/dados/SalarioExperiencia.csv",
-               header = TRUE, sep = ";", dec = ".")
-
-glimpse(dt)
-
 #Definição da notação do p-valor
 options(scipen=999)
 
-# Retirando linhas da base de dados (apenas para curiosidade)
-# dt <- dt[-18,]
+rm(list=ls(all=TRUE))
 
+# Dados
+dt <- read.csv("~/EstR/DadosProjetos/TestesQuantitativos/Airline.csv")
+
+glimpse(dt)
 
 # Estatisticas descritivas
-summary(dt$salario)
-summary(dt$experiencia)
-cor(dt$experiencia, dt$salario)
+#y(resposta/dependente)=salário -- x(explicativa/independente)=experiência
+summary(dt$output)
+summary(dt$lf)
+cor(dt$lf, dt$output)
 
 
-
-resposta <- ggplot(dt, aes(x = experiencia))+
+resposta <- ggplot(dt, aes(x = lf))+
   geom_histogram(aes(y = after_stat(count / sum(count))),
                  bins = 7, fill="blue")+
   scale_y_continuous(labels = scales::percent)+
   labs(y="FR",
-       x="experiencia (em R$1000,00)",
+       x="output (em *preencher unidade*)",
        title="Histograma")+
   theme(text = element_text(size = 12))
 ggplotly(resposta)
 
-disp <- ggplot(data = dt, aes(x = experiencia, y = salario)) +
+disp <- ggplot(data = dt, aes(x = lf, y = output)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao") +
   geom_smooth(method = "lm", se = TRUE)
 ggplotly(disp)
 
-disp2 <- ggplot(data = dt, aes(x = experiencia, y = salario)) +
+disp2 <- ggplot(data = dt, aes(x = lf, y = output)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao e boxplots marginais") +
   geom_smooth(method = "lm", se = TRUE)
@@ -56,12 +50,12 @@ ggMarginal(disp,
 
 
 # Teste de correlacao
-cor.test(dt$salario, dt$experiencia)
+cor.test(dt$output, dt$lf)
 
 
 # Regressao linear
 # y ~ x (y = resposta, x = explicativa)
-modelo <- lm(salario ~ experiencia, data = dt)
+modelo <- lm(output ~ lf, data = dt)
 summary(modelo)
 confint(modelo)
 
@@ -106,10 +100,10 @@ ggMarginal(ggres,
 
 model.diag.metrics <- augment(modelo)
 head(model.diag.metrics)
-ggplot(model.diag.metrics, aes(experiencia, salario)) +
+ggplot(model.diag.metrics, aes(lf, output)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE) +
-  geom_segment(aes(xend = experiencia, yend = .fitted), color = "red", size = 0.3) +
+  geom_segment(aes(xend = lf, yend = .fitted), color = "red", size = 0.3) +
   ggtitle("Residuos do modelo")
 
 
