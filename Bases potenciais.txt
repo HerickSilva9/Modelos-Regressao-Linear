@@ -1,1 +1,6 @@
 FoodExpenditure = food e income
+food
+despesas domésticas com alimentação.
+
+income
+renda familiar.

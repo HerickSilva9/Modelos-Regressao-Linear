@@ -11,34 +11,40 @@ options(scipen=999)
 rm(list=ls(all=TRUE))
 
 # Dados
-dt <- read.csv("~/EstR/DadosProjetos/TestesQuantitativos/Airline.csv")
+dt <- read.csv("~/EstR/DadosProjetos/TestesQuantitativos/FoodExpenditure.csv")
 
 glimpse(dt)
 
 # Estatisticas descritivas
 #y(resposta/dependente)=salário -- x(explicativa/independente)=experiência
-summary(dt$output)
-summary(dt$lf)
-cor(dt$lf, dt$output)
+summary(dt$food)
+summary(dt$income)
+cor(dt$income, dt$food)
 
 
-resposta <- ggplot(dt, aes(x = lf))+
+#food
+#despesas domésticas com alimentação.
+
+#income
+#renda familiar.
+
+resposta <- ggplot(dt, aes(x = income))+
   geom_histogram(aes(y = after_stat(count / sum(count))),
                  bins = 7, fill="blue")+
   scale_y_continuous(labels = scales::percent)+
   labs(y="FR",
-       x="output (em *preencher unidade*)",
+       x="food (em *preencher unidade*)",
        title="Histograma")+
   theme(text = element_text(size = 12))
 ggplotly(resposta)
 
-disp <- ggplot(data = dt, aes(x = lf, y = output)) +
+disp <- ggplot(data = dt, aes(x = income, y = food)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao") +
   geom_smooth(method = "lm", se = TRUE)
 ggplotly(disp)
 
-disp2 <- ggplot(data = dt, aes(x = lf, y = output)) +
+disp2 <- ggplot(data = dt, aes(x = income, y = food)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao e boxplots marginais") +
   geom_smooth(method = "lm", se = TRUE)
@@ -50,12 +56,12 @@ ggMarginal(disp,
 
 
 # Teste de correlacao
-cor.test(dt$output, dt$lf)
+cor.test(dt$food, dt$income)
 
 
 # Regressao linear
 # y ~ x (y = resposta, x = explicativa)
-modelo <- lm(output ~ lf, data = dt)
+modelo <- lm(food ~ income, data = dt)
 summary(modelo)
 confint(modelo)
 
@@ -100,10 +106,10 @@ ggMarginal(ggres,
 
 model.diag.metrics <- augment(modelo)
 head(model.diag.metrics)
-ggplot(model.diag.metrics, aes(lf, output)) +
+ggplot(model.diag.metrics, aes(income, food)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE) +
-  geom_segment(aes(xend = lf, yend = .fitted), color = "red", size = 0.3) +
+  geom_segment(aes(xend = income, yend = .fitted), color = "red", size = 0.3) +
   ggtitle("Residuos do modelo")
 
 
