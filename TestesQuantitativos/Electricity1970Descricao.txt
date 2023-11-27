@@ -1,0 +1,45 @@
+Função de custo para produtores de eletricidade
+
+Descrição
+um corte transversal de 1970 a 1970
+
+número de observações: 158
+
+observação: unidades de produção
+
+país: Estados Unidos
+
+Formato
+Um dataframe contendo:
+
+cost
+custo total
+
+output
+produção total
+
+labor
+taxa salarial
+
+laborshare
+participação nos custos de mão de obra
+
+capital
+índice de preços de capital
+
+capitalshare
+participação nos custos de capital
+
+fuel
+preço do combustível
+
+fuelshare
+partilha de custos de combustível
+
+Fonte
+Christensen, L. e WH Greene (1976) “Economias de escala na geração de energia elétrica nos EUA”, Journal of Political Economy , 84 , 655-676.
+
+Referências
+Greene, WH (2003) Econometric Analysis , Prentice Hall, https://archive.org/details/econometricanaly0000gree_f4x3 , capítulo 4, 317-320.
+
+Hayashi, F. (2000) Econometrics , Princeton University Press, https://archive.org/details/econometrics0000haya , capítulo 1, 76-84.

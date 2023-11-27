@@ -1,0 +1,55 @@
+Dados de vendas de lojas de moda masculina
+
+Descrição
+um corte transversal de 1990
+
+número de observações: 400
+
+observação: unidades de produção
+
+país: Holanda
+
+Formato
+Um dataframe contendo:
+
+tsales
+vendas anuais em florins holandeses
+
+sales
+vendas por metro quadrado
+
+margem
+margem de lucro bruto
+
+nown
+número de proprietários (gerentes)
+
+nfull
+número de full-timers
+
+npart
+número de funcionários em tempo parcial
+
+naux
+número de ajudantes (trabalhadores temporários)
+
+hoursw
+número total de horas trabalhadas
+
+hourspw
+número de horas trabalhadas por trabalhador
+
+inv1
+investimento em lojas
+
+inv2
+investimento em automação.
+
+ssize
+área de vendas da loja (em m$^2$).
+
+start
+início de ano de negócios
+
+Referências
+Verbeek, Marno (2004) A Guide to Modern Econometrics , John Wiley and Sons, capítulo 3.

@@ -1,0 +1,52 @@
+Ações orçamentárias para famílias italianas
+
+Descrição
+um corte transversal de 1973 a 1992
+
+número de observações: 1729
+
+observação: agregados familiares
+
+país: Itália
+
+Formato
+Um dataframe contendo:
+
+wfood
+partilha de comida
+
+whouse
+habitação e partilha de combustíveis
+
+wmisc
+compartilhamento diversos
+
+pfood
+preço da comida
+
+phouse
+preço da habitação e dos combustíveis
+
+pmisc
+preço variado
+
+totexp
+despesa total
+
+year
+ano
+
+income
+renda
+
+size
+tamanho da família
+
+pct
+peso celular
+
+Fonte
+Bollino, Carlo Andrea, Frederico Perali e Nicola Rossi (2000) "Linear tecnologias domésticas", Journal of Applied Econometrics , 15(3) , 253–274.
+
+Referências
+Arquivo de dados do Journal of Applied Econometrics : http://qed.econ.queensu.ca/jae/ .

@@ -1,0 +1,26 @@
+Proporção da renda familiar gasta com alimentação
+
+Descrição
+Dados sobre a proporção da renda gasta com alimentação para uma amostra aleatória de 38 domicílios em uma grande cidade dos Estados Unidos.
+
+Formato
+Um quadro de dados contendo 38 observações em 3 variáveis.
+
+food
+despesas domésticas com alimentação.
+
+income
+renda familiar.
+
+persons
+número de pessoas que moram na casa.
+
+Fonte
+Retirado de Griffiths et al. (1993, Tabela 15.4).
+
+Referências
+Cribari-Neto, F., e Zeileis, A. (2010). Beta Regression em R. Journal of Statistical Software , 34 (2), 1–24. doi: 10.18637/jss.v034.i02
+
+Ferrari, SLP, e Cribari-Neto, F. (2004). Regressão Beta para Taxas e Proporções de Modelagem. Journal of Applied Statistics , 31 (7), 799–815.
+
+Griffiths, WE, Hill, RC e Judge, GG (1993). Aprendendo e praticando econometria Nova York: John Wiley and Sons.

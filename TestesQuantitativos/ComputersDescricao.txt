@@ -1,0 +1,49 @@
+Preços de computadores pessoais
+
+Descrição
+um corte transversal de 1993 a 1995
+
+número de observações: 6259
+
+observação: bens
+
+país: Estados Unidos
+
+Formato
+Um dataframe contendo:
+
+price
+preço em dólares americanos de 486 PCs
+
+speed
+velocidade do relógio em MHz
+
+hd
+tamanho do disco rígido em MB
+
+ram
+tamanho da Ram em em MB
+
+screen
+tamanho da tela em polegadas
+
+cd
+está presente um CD-ROM?
+
+multi
+acompanha kit multimídia (alto-falantes, placa de som) ?
+
+premium
+o fabricante era uma empresa "premium" (IBM, COMPAQ)?
+
+ads
+número de 486 listas de preços para cada mês
+
+trend
+tendência temporal indicando o mês de janeiro de 1993 a novembro de 1995.
+
+Fonte
+Stengos, T. e E. Zacharias (2005) “Preços intertemporais e discriminação de preços: uma análise hedônica semiparamétrica do mercado de computadores pessoais”, Journal of Applied Econometrics , a ser publicado .
+
+Referências
+Arquivo de dados do Journal of Applied Econometrics : http://qed.econ.queensu.ca/jae/ .

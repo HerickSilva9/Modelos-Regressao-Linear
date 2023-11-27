@@ -1,0 +1,42 @@
+Dados de preços de carros nos EUA
+
+Descrição
+Dados dos EUA extraídos de Cars93, um quadro de dados no pacote MASS.
+
+Formato
+Este quadro de dados contém as seguintes colunas:
+
+Type
+Tipo de carro, por exemplo, esportivo, van, compacto
+
+Min.Price
+Preço de um modelo básico
+
+Price
+Preço de um modelo intermediário
+
+Max.Price
+Preço de um modelo 'premium'
+
+Range.Price
+Diferença entre Max.Price e Min.Price
+
+RoughRange
+Rough.Range mais algum ruído N(0,0001)
+
+gpm100
+O número de galões necessários para viajar 100 milhas
+
+MPG.city
+Número médio de milhas por galão para dirigir na cidade
+
+MPG.highway
+Número médio de milhas por galão para dirigir em rodovias
+
+Fonte
+pacote MASSA
+
+Referências
+Venables, WN\ e Ripley, BD, 4ª ed. 2002. Modern Applied Statistics com S. Springer, Nova York.
+
+Veja também 'R' Complements to Modern Applied Statistics with S-Plus, disponível em http://www.stats.ox.ac.uk/pub/MASS3/

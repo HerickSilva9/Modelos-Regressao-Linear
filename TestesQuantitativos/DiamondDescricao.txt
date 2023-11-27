@@ -1,0 +1,34 @@
+Precificando os C's das Pedras de Diamante
+
+Descrição
+uma seção transversal de 2000
+
+número de observações: 308
+
+observação: bens
+
+país: Singapura
+
+Formato
+Um dataframe contendo:
+
+carat
+peso de pedras de diamante em quilates
+
+colour
+um fator com níveis (D,E,F,G,H,I)
+
+clarity
+um fator com níveis ( IF,VVS1,VVS2,VS1,VS2)
+
+certification
+organismo de certificação, um fator com níveis ( GIA, IGI, HRD)
+
+price
+preço em Singapura $
+
+Fonte
+Chu, Singfat (2001) “Pricing the C's of Diamond Stones”, Journal of Statistics Education , 9(2) .
+
+Referências
+Arquivo de dados do Journal of Statistics Education: http://jse.amstat.org/jse_data_archive.htm .

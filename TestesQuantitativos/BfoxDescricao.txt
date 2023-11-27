@@ -1,0 +1,34 @@
+Participação das Mulheres Canadenses na Força de Trabalho
+
+Descrição
+O quadro de dados tem 30 linhas e 7 colunas. Dados de séries temporais sobre a participação das mulheres canadenses na força de trabalho, 1946–1975.
+
+Formato
+Este quadro de dados contém as seguintes colunas:
+
+partic
+Porcentagem de mulheres adultas na força de trabalho.
+
+tfr
+Taxa de fertilidade total: nascimentos esperados para uma coorte de 1.000 mulheres nas taxas atuais de fertilidade específicas por idade.
+
+menwage
+Salários semanais médios dos homens, em dólares constantes de 1935 e ajustados pelas taxas de impostos atuais.
+
+womwage
+Salários semanais médios das mulheres.
+
+debt
+Dívida per capita do consumidor, em dólares constantes.
+
+parttime
+Porcentagem da força de trabalho ativa trabalhando 34 horas por semana ou menos.
+
+Aviso***
+O valor de tfrpara 1973 foi registrado incorretamente como 2931; deve ser 1931.
+
+Fonte
+Fox, B. (1980) Trabalho doméstico feminino e seu envolvimento no trabalho assalariado. Tese de doutorado inédita, p. 449.
+
+Referências
+Fox, J. (2016) Análise de regressão aplicada e modelos lineares generalizados , terceira edição. Sábio.
