@@ -33,7 +33,7 @@ resposta <- ggplot(dt, aes(x = income))+
                  bins = 7, fill="blue")+
   scale_y_continuous(labels = scales::percent)+
   labs(y="FR",
-       x="food (em *preencher unidade*)",
+       x="food (em milhares)",
        title="Histograma")+
   theme(text = element_text(size = 12))
 ggplotly(resposta)
@@ -52,7 +52,7 @@ disp2 <- ggplot(data = dt, aes(x = income, y = food)) +
   geom_smooth(method = "lm", se = TRUE)
 ggplotly(disp2)
 
-ggMarginal(disp,
+ggMarginal(disp2,
            type = "boxplot",
            fill = "lightblue")
 
@@ -145,7 +145,8 @@ summary(rstandard(modelo))
 
 plot(modelo,5)
 
-# Distancia de Cook
+# Distancia de Cook (se precisar)
 plot(modelo,4)
 
 # gvlma::gvlma(modelo) ?
+
