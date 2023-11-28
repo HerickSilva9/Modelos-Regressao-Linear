@@ -1,6 +1,6 @@
 # Modelo de regressao linear simples
 
-if(!require(pacman)) install.packages("pacman")
+if(!require(pacman)) install.packrams("pacman")
 library(pacman)
 
 pacman::p_load(tidyverse, plotly, lmtest, ggfortify, broom, ggExtra, car)
@@ -11,21 +11,24 @@ options(scipen=999)
 rm(list=ls(all=TRUE))
 
 # Dados
-dt <- read.csv("~/EstR/DadosProjetos/TestesQuantitativos/FoodExpenditure.csv")
+df <- read.csv("~/EstR/DadosProjetos/TestesQuantitativos/BudgetItaly.csv")
+
+# Filtrando as linhas em que a variável "year" seja igual a 92
+dt <- subset(df, year == 9)
 
 glimpse(dt)
 
-#food
+#pfood
 #despesas domésticas com alimentação.
 
-#income
+#ram
 #renda familiar
 
 # Estatisticas descritivas
-#y(resposta/dependente)=salário -- x(explicativa/independente)=experiência
-summary(dt$food)
+#y(resposta/dependente)=salário -- x(explicativa/independente)=pfoodiência
+summary(dt$pfood)
 summary(dt$income)
-cor(dt$income, dt$food)
+cor(dt$income, dt$pfood)
 
 # Histograma
 resposta <- ggplot(dt, aes(x = income))+
@@ -33,20 +36,20 @@ resposta <- ggplot(dt, aes(x = income))+
                  bins = 7, fill="blue")+
   scale_y_continuous(labels = scales::percent)+
   labs(y="FR",
-       x="food (em milhares)",
+       x="pfood (em milhares)",
        title="Histograma")+
   theme(text = element_text(size = 12))
 ggplotly(resposta)
 
 # Verificar - Grafico de dispersao
-disp <- ggplot(data = dt, aes(x = income, y = food)) +
+disp <- ggplot(data = dt, aes(x = income, y = pfood)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao") +
   geom_smooth(method = "lm", se = TRUE)
 ggplotly(disp)
 
 # Importante - Grafico de dispersão e boxplots marginais
-disp2 <- ggplot(data = dt, aes(x = income, y = food)) +
+disp2 <- ggplot(data = dt, aes(x = income, y = pfood)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao e boxplots marginais") +
   geom_smooth(method = "lm", se = TRUE)
@@ -58,12 +61,12 @@ ggMarginal(disp2,
 
 
 # Teste de correlacao
-cor.test(dt$food, dt$income)
+cor.test(dt$pfood, dt$income)
 
 
 # Modelo de Regressao linear
 # y ~ x (y = resposta, x = explicativa)
-modelo <- lm(food ~ income, data = dt)
+modelo <- lm(pfood ~ income, data = dt)
 summary(modelo)
 confint(modelo)
 
@@ -97,7 +100,7 @@ ggMarginal(ggres,
 # Verificar - gráfico de resíduos
 model.diag.metrics <- augment(modelo)
 head(model.diag.metrics)
-ggplot(model.diag.metrics, aes(income, food)) +
+ggplot(model.diag.metrics, aes(income, pfood)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE) +
   geom_segment(aes(xend = income, yend = .fitted), color = "red", size = 0.3) +
@@ -139,7 +142,7 @@ bptest(modelo)
 
 plot(modelo,3)
 
-### 5 Ausencia de outliers influentes e pontos de alavancagem
+### 5 Ausencia de outliers influentes e pontos de alavancramm
 # Outliers nos resíduos
 summary(rstandard(modelo)) 
 
@@ -149,4 +152,5 @@ plot(modelo,5)
 plot(modelo,4)
 
 # gvlma::gvlma(modelo) ?
+
 
