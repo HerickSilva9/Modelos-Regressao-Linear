@@ -11,45 +11,42 @@ options(scipen=999)
 rm(list=ls(all=TRUE))
 
 # Dados
-dt <- read.csv("basesweb/score_updated.csv")
-
-# Filtrando as linhas em que a variável "year" seja igual a 92
-#dt <- subset(df, year == 92)
+dt <- read.csv("~/EstR/DadosProjetos/TestesQuantitativos/GasolineYield.csv")
 
 glimpse(dt)
 
-#Scores
-#despesas domésticas com alimentação.
+# x = pressure
+#pressão de vapor do petróleo bruto (lbf/in2).
 
-#ram
-#renda familiar
+#y = yield
+#proporção de petróleo bruto convertido em gasolina após destilação e fracionamento.
 
 # Estatisticas descritivas
-#y(resposta/dependente)=salário -- x(explicativa/independente)=Scoresiência
-summary(dt$Scores)
-summary(dt$Hours)
-cor(dt$Hours, dt$Scores)
+#y(resposta/dependente)=yield -- x(explicativa/independente)=pressure
+summary(dt$yield)
+summary(dt$pressure)
+cor(dt$pressure, dt$yield)
 
 # Histograma
-resposta <- ggplot(dt, aes(x = Hours))+
+resposta <- ggplot(dt, aes(x = pressure))+
   geom_histogram(aes(y = after_stat(count / sum(count))),
                  bins = 7, fill="blue")+
   scale_y_continuous(labels = scales::percent)+
   labs(y="FR",
-       x="Scores (em milhares)",
+       x="yield ",
        title="Histograma")+
   theme(text = element_text(size = 12))
 ggplotly(resposta)
 
 # Verificar - Grafico de dispersao
-disp <- ggplot(data = dt, aes(x = Hours, y = Scores)) +
+disp <- ggplot(data = dt, aes(x = pressure, y = yield)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao") +
   geom_smooth(method = "lm", se = TRUE)
 ggplotly(disp)
 
 # Importante - Grafico de dispersão e boxplots marginais
-disp2 <- ggplot(data = dt, aes(x = Hours, y = Scores)) +
+disp2 <- ggplot(data = dt, aes(x = pressure, y = yield)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao e boxplots marginais") +
   geom_smooth(method = "lm", se = TRUE)
@@ -61,12 +58,12 @@ ggMarginal(disp2,
 
 
 # Teste de correlacao
-cor.test(dt$Scores, dt$Hours)
+cor.test(dt$yield, dt$pressure)
 
 
 # Modelo de Regressao linear
 # y ~ x (y = resposta, x = explicativa)
-modelo <- lm(Scores ~ Hours, data = dt)
+modelo <- lm(yield ~ pressure, data = dt)
 summary(modelo)
 confint(modelo)
 
@@ -82,7 +79,7 @@ ggres <- res %>%
   geom_point(color='blue', size = 3) +
   ggtitle("Residuos do modelo") +
   geom_hline(aes(yintercept = 0, colour = "red"), linewidth=1) +
-  guides(color = FALSE, size = FALSE)
+  guides(color = FALSE, size = none)
 
 # Verificar - Grafico com boxplot
 ggMarginal(ggres,
@@ -100,10 +97,10 @@ ggMarginal(ggres,
 # Verificar - gráfico de resíduos
 model.diag.metrics <- augment(modelo)
 head(model.diag.metrics)
-ggplot(model.diag.metrics, aes(Hours, Scores)) +
+ggplot(model.diag.metrics, aes(pressure, yield)) +
   geom_point() +
   stat_smooth(method = lm, se = FALSE) +
-  geom_segment(aes(xend = Hours, yend = .fitted), color = "red", size = 0.3) +
+  geom_segment(aes(xend = pressure, yend = .fitted), color = "red", linewidth = 0.3) +
   ggtitle("Residuos do modelo")
 
 
@@ -152,5 +149,3 @@ plot(modelo,5)
 plot(modelo,4)
 
 # gvlma::gvlma(modelo) ?
-
-

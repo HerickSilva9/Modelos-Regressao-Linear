@@ -152,5 +152,3 @@ plot(modelo,5)
 plot(modelo,4)
 
 # gvlma::gvlma(modelo) ?
-
-
