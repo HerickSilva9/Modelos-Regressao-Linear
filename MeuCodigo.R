@@ -13,19 +13,17 @@ rm(list=ls(all=TRUE))
 # Dados
 dt <- read.csv("basesweb/score_updated.csv")
 
-# Filtrando as linhas em que a variável "year" seja igual a 92
-#dt <- subset(df, year == 92)
-
 glimpse(dt)
 
-#Scores
-#despesas domésticas com alimentação.
+# Variáveis de análise
+# x = Hours
+# Horas de estudo
 
-#ram
-#renda familiar
+# y = Scores
+# Notas na prova
 
 # Estatisticas descritivas
-#y(resposta/dependente)=salário -- x(explicativa/independente)=Scoresiência
+#y(resposta/dependente)=Scores -- x(explicativa/independente)=Hours
 summary(dt$Scores)
 summary(dt$Hours)
 cor(dt$Hours, dt$Scores)
@@ -36,19 +34,19 @@ resposta <- ggplot(dt, aes(x = Hours))+
                  bins = 7, fill="blue")+
   scale_y_continuous(labels = scales::percent)+
   labs(y="FR",
-       x="Scores (em milhares)",
+       x="Scores",
        title="Histograma")+
   theme(text = element_text(size = 12))
 ggplotly(resposta)
 
-# Verificar - Grafico de dispersao
+# Grafico de dispersao - Não precisa estar no slide
 disp <- ggplot(data = dt, aes(x = Hours, y = Scores)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao") +
   geom_smooth(method = "lm", se = TRUE)
 ggplotly(disp)
 
-# Importante - Grafico de dispersão e boxplots marginais
+# Grafico de dispersão e boxplots marginais - precisa estar no slide
 disp2 <- ggplot(data = dt, aes(x = Hours, y = Scores)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao e boxplots marginais") +
@@ -67,12 +65,13 @@ cor.test(dt$Scores, dt$Hours)
 # Modelo de Regressao linear
 # y ~ x (y = resposta, x = explicativa)
 modelo <- lm(Scores ~ Hours, data = dt)
+
 summary(modelo)
 confint(modelo)
 
 autoplot(modelo)
 
-### verificar
+### Residuos do modelo
 res <- residuals(modelo) %>%
   as.data.frame()
 names(res) <- "residuos"
@@ -84,20 +83,21 @@ ggres <- res %>%
   geom_hline(aes(yintercept = 0, colour = "red"), linewidth=1) +
   guides(color = FALSE, size = FALSE)
 
-# Verificar - Grafico com boxplot
+# Grafico com boxplot
 ggMarginal(ggres,
            type = "boxplot",
            fill = "lightblue",
            margins = "y")
 
-# Verificar - grafico com histograma
+
+# VGrafico com histograma
 ggMarginal(ggres,
            type = "histogram",
            bins = ceiling(sqrt(nrow(res)))+2,
            fill = "lightblue",
            margins = "y")
 
-# Verificar - gráfico de resíduos
+# Gráfico de resíduos
 model.diag.metrics <- augment(modelo)
 head(model.diag.metrics)
 ggplot(model.diag.metrics, aes(Hours, Scores)) +
@@ -105,7 +105,6 @@ ggplot(model.diag.metrics, aes(Hours, Scores)) +
   stat_smooth(method = lm, se = FALSE) +
   geom_segment(aes(xend = Hours, yend = .fitted), color = "red", size = 0.3) +
   ggtitle("Residuos do modelo")
-
 
 # ANOVA
 summary(aov(modelo))
@@ -152,5 +151,4 @@ plot(modelo,5)
 plot(modelo,4)
 
 # gvlma::gvlma(modelo) ?
-
 
