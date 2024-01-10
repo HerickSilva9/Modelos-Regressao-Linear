@@ -11,7 +11,7 @@ options(scipen=999)
 rm(list=ls(all=TRUE))
 
 # Dados
-dt <- read.csv("basesweb/score_updated.csv")
+dt <- read.csv("score_updated.csv")
 
 glimpse(dt)
 
@@ -51,8 +51,6 @@ disp2 <- ggplot(data = dt, aes(x = Hours, y = Scores)) +
   geom_point(color='blue') +
   ggtitle("Grafico de dispersao e boxplots marginais") +
   geom_smooth(method = "lm", se = TRUE)
-ggplotly(disp2)
-
 ggMarginal(disp2,
            type = "boxplot",
            fill = "lightblue")
